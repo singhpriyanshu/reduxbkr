@@ -10,12 +10,15 @@ class Step3 extends Component {
         let {dishes}=this.props
         return (
             <div className="bc">
-                {dishes.length>0?
+                {/* {dishes.length>0?
                 dishes.map((item,index)=>{
-                   return( 
+                   return(  */}
                    <div className="style" style={{margin: "60px",padding:"40px"}}>
                   
-                  Dish :  <select name="dishes"  onChange={(e)=>this.props.handledishesChanges(e,index)} style={{ width: 170 }} >
+                  Dish :  <select name="dishes" 
+                  //  onChange={(e)=>this.props.handledishesChanges(e,index)} 
+                  onChange={this.props.handleChange} 
+                 style={{ width: 170 }} >
                             <option value="Chicken Burger">Chicken Burger</option>
                             <option value="Ham Burger">Ham Burger</option> 
                             <option value="Cheese Burger">Cheese Burger</option>
@@ -29,13 +32,16 @@ class Step3 extends Component {
                     </select> <br/>
                          <div style={{margin:"17px"}}>
                             Please Select No. of Servings :  
-                            <input type="number" name="servings"   onChange={(e)=>this.props.handledishesChanges(e,index)} style={{ width: 60 }}/>
+                            <input type="number" name="servings"
+                        onChange={this.props.handleChange} 
+                        //  onChange={(e)=>this.props.handledishesChanges(e,index)} 
+                            style={{ width: 60 }}/>
                          </div>
                             </div>
 
-                   )
+                   {/* )
                 })
-                :""} 
+                :""}  */}
 
        < Icon type="plus-circle" style={{marginRight:"670px",fontSize:"25px"}} onClick={this.props.addMoreDishes} />
    <div style={{padding:"170px"}}>

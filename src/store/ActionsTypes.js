@@ -2,3 +2,6 @@ export const LOAD_DISH = 'LOAD_DISH';
 export const LOAD_DISH_SUCESS = 'LOAD_DISH_SUCESS';
 export const LOAD_DISH_FAIL = 'LOAD_DISH_FAIL';
 export const DISH_LOADING = 'DISH_LOADING';
+export const SELECT_MEAL='SELECT_MEAL';
+export const SELECT_RESTAURANT='SELECT_RESTAURANT';
+export const SELECT_PEOPLE='SELECT_PEOPLE';

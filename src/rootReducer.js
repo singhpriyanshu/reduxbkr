@@ -1,6 +1,12 @@
 import { combineReducers } from "redux";
-import data from "./store/Reducer";
+import dishes from "./store/Reducer";
+import selectMeal from './store/Reducer'
+import selectRestaurant from './store/Reducer'
+import selectPeople from './store/Reducer'
 
 export default combineReducers({
-    data
+    dishes,
+    selectMeal,
+    selectRestaurant,
+    selectPeople
 });

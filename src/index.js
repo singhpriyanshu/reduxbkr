@@ -1,4 +1,5 @@
 import React from 'react';
+// import data from './data.js/index.js'
 import ReactDOM from 'react-dom';
 import './index.css';
 import App from './App';
