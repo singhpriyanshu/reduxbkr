@@ -1,16 +1,12 @@
 import React, { Component } from 'react'
-import { bindActionCreators } from 'redux'
 import {connect} from 'react-redux'
 import Step1 from './Component/Step1'
 import Step2 from './Component/Step2'
 import Step3 from './Component/Step3'
 import Review from './Component/Review'
 import Lastpage from './Lastpage'
-import {getDish} from './store/Actions'
-
-
+import {getDishes} from "./store/action/dishes.act";
 import { Tabs } from 'antd';
-import { newdata } from './data'
 
 
 const { TabPane } = Tabs;
@@ -31,7 +27,8 @@ class MainTab extends Component {
     
    }
   componentDidMount(){
-   this.props.dispatch(getDish())
+  //  this.props.getDish();
+  this.props.dispatch(getDishes());
   }
   
 
@@ -120,7 +117,7 @@ class MainTab extends Component {
      <TabPane tab="Step 3" key="3" >
      <Step3 
       triggerParentUpdate= {this.buttonClick} 
-      dishes={newdata.dishes}
+      dishes={dishes}
       // handledishesChanges={this.handledishesChanges}
       handleChange={this.handleChange}
       addMoreDishes={this.addMoreDishes}
@@ -148,23 +145,15 @@ class MainTab extends Component {
 
 const mapStateToProps = state => {
   return {
-  dishes: state.dishes.dishes,
-  selectMeal:state.selectMeal.selectMeal,
-  selectRestaurant:state.selectRestaurant.selectRestaurant,
-  selectPeople:state.selectPeople.selectPeople,
-  
-  loading: state.dishes.loading,
-
-  error: state.dishes.error
-};
+    getData:state.dishesReducer.Json,
+    loading:state.dishesReducer.loading,
+    error:state.dishesReducer.error
+  };
 };
 
 // const mapDispatchToProps = dispatch =>{
 //   return{
-//  getDish:bindActionCreators(getDish,dispatch)
+//     getDishes : () => dispatch(actions.getDishes()) 
 //   };
 // };
- export default connect(mapStateToProps
-  // ,
-  // mapDispatchToProps
-  )(MainTab)
+ export default connect(mapStateToProps,null)(MainTab)
