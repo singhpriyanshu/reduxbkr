@@ -5,7 +5,8 @@ import Step2 from './Component/Step2'
 import Step3 from './Component/Step3'
 import Review from './Component/Review'
 import Lastpage from './Lastpage'
-import {getDishes} from "./store/action/dishes.act";
+// import {getDishes} from "./store/action/dishes.act";
+import {getDishes} from './store/fetch'
 import { Tabs } from 'antd';
 
 
@@ -75,7 +76,7 @@ class MainTab extends Component {
        }
       
     render() {
-      const { error,selectMeal, loading, dishes,selectPeople,selectRestaurant } = this.props;
+      const { error,meal, loading, dishes,selectPeople,selectRestaurant } = this.props;
         const {next}=this.state
         if (error) {
           return <div>Error! {error.message}</div>;
@@ -86,21 +87,30 @@ class MainTab extends Component {
         }
       
         return (
-            <div>
+            <div> {console.log(this.props.Json)}
+                <ul>
+        {this.props.Json.map(Json =>
+        <li key={Json.id}>
+            {Json.name}<br/>
+        res==    {Json.restaurant}
+       
+         </li>)}
+      </ul>
+             
                 {/* {console.log(this.props.dishes)}
                {dishes} 
                 {console.log(this.props.selectMeal)} 
                {newdata.map(newdata=><li key={newdata.id}>{newdata.name}</li>)}
-            {JSON.stringify(dishes)}  */}
+            {Json.stringify(dishes)}  */}
 
-            {console.log(this.state)}
+            {/* {console.log(meal)} */}
       <Tabs 
        activeKey={next.toString()} >
      
       <TabPane tab="Step 1" key="1" >
        <Step1 
        triggerParentUpdate= {this.buttonClick} 
-       selectMeal={selectMeal}
+       meal={this.props.meal}
        selectPeople={selectPeople}
        handleChange={this.handleChange}
        />
@@ -127,7 +137,7 @@ class MainTab extends Component {
      <TabPane tab="Review" key="4" >
       <Review 
       triggerParentUpdate= {this.buttonClick}
-      selectMeal={selectMeal}
+      meal={meal}
       selectPeople={selectPeople}
       selectRestaurant ={selectRestaurant}
       dishes={dishes}
@@ -145,9 +155,11 @@ class MainTab extends Component {
 
 const mapStateToProps = state => {
   return {
-    getData:state.dishesReducer.Json,
-    loading:state.dishesReducer.loading,
-    error:state.dishesReducer.error
+    // getData:state.dishesReducer.Json,
+    Json: state.Json.Json,
+    // loading:state.dishesReducer.loading,
+    loading:state.Json.loading,
+    error:state.Json.error
   };
 };
 
