@@ -5,9 +5,9 @@ const initialState = {
     Json: [],
     error: null,
     loading: false,
-  //   meal:[],
-  //   restorents:[],
-  //   dishes:[]
+    meal:[],
+    restaurants:[],
+    dishes:[],
   };
   export default function dishreducer (state = initialState, action) {
     switch(action.type) {
@@ -19,10 +19,21 @@ const initialState = {
         };
   
       case GET_DISHES_SUCCESS:
+       let meals=[];
+        state.Json.filter((item1)=>{
+         item1.availableMeals.filter((item2)=>{
+           if(meals.includes(item2)===false)
+           {meals=[...meals,item2]}
+          })
+      })
+   
         return {
           ...state,
           loading: false,
-          Json: action.payload.Json
+          Json: action.payload.Json,
+          // meals:meals
+          // meal:action.payload.meals,
+          // restaurant:action.payload.restaurant
         };
   
       case GET_DISHES_FAIL:

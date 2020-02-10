@@ -1,9 +1,11 @@
 import { combineReducers } from "redux";
-// import {getDishes} from "./store/reducer/dishes.red";
+import {getDishes} from "./store/fetch";
 import Json from './store/reducer';
+import meal from './store/reducer';
+
 
 
 export default combineReducers({
-    // dishesReducer:getDishes
-    Json
+    dishreducer:getDishes,
+    Json,meal
 });

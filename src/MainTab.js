@@ -16,21 +16,13 @@ class MainTab extends Component {
     constructor(props){
       super(props);
       this.state={
-        // selectMeal:"",
-        // selectPeople:"",
-        
-        // dishes:[{
-        //   dishes:"",
-        //   servings:""
-        // }],
-        next:"1",
+       next:"1",
     }
-    
    }
+
   componentDidMount(){
-  //  this.props.getDish();
-  this.props.dispatch(getDishes());
-  }
+   this.props.dispatch(getDishes());
+    }
   
 
   
@@ -76,7 +68,7 @@ class MainTab extends Component {
        }
       
     render() {
-      const { error,meal, loading, dishes,selectPeople,selectRestaurant } = this.props;
+      const { error,meal,meals, loading, dishes,selectPeople,selectRestaurant } = this.props;
         const {next}=this.state
         if (error) {
           return <div>Error! {error.message}</div>;
@@ -87,30 +79,29 @@ class MainTab extends Component {
         }
       
         return (
-            <div> {console.log(this.props.Json)}
-                <ul>
-        {this.props.Json.map(Json =>
-        <li key={Json.id}>
-            {Json.name}<br/>
-        res==    {Json.restaurant}
-       
-         </li>)}
-      </ul>
-             
-                {/* {console.log(this.props.dishes)}
-               {dishes} 
-                {console.log(this.props.selectMeal)} 
-               {newdata.map(newdata=><li key={newdata.id}>{newdata.name}</li>)}
-            {Json.stringify(dishes)}  */}
+            <div>
+              {/* {console.log(this.props.Json)}  */}
+            {  console.log(meals)}
 
-            {/* {console.log(meal)} */}
+              {/* <ul>
+           {this.props.Json.map(Json => */}
+        {/* <li key={Json.id}>
+      {Json.name}<br/>
+      res==    {Json.restaurant}
+       
+        </li>)
+               </ul>  */} 
+             
+         
+
+             
       <Tabs 
        activeKey={next.toString()} >
      
       <TabPane tab="Step 1" key="1" >
        <Step1 
        triggerParentUpdate= {this.buttonClick} 
-       meal={this.props.meal}
+       meal={meals}
        selectPeople={selectPeople}
        handleChange={this.handleChange}
        />
@@ -137,7 +128,7 @@ class MainTab extends Component {
      <TabPane tab="Review" key="4" >
       <Review 
       triggerParentUpdate= {this.buttonClick}
-      meal={meal}
+      meal={meals}
       selectPeople={selectPeople}
       selectRestaurant ={selectRestaurant}
       dishes={dishes}
@@ -157,15 +148,17 @@ const mapStateToProps = state => {
   return {
     // getData:state.dishesReducer.Json,
     Json: state.Json.Json,
-    // loading:state.dishesReducer.loading,
+    meal:state.Json.Json,
+    restaurants:state.Json.Json,
+    dishes:state.Json.Json,
     loading:state.Json.loading,
     error:state.Json.error
   };
 };
-
-// const mapDispatchToProps = dispatch =>{
-//   return{
-//     getDishes : () => dispatch(actions.getDishes()) 
-//   };
-// };
- export default connect(mapStateToProps,null)(MainTab)
+                                                                                                                                   
+const mapDispatchToProps = dispatch =>{
+  return{
+     getDishes:()=>dispatch((getDishes))
+  };
+};
+ export default connect(mapStateToProps)(MainTab)
