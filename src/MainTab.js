@@ -5,8 +5,7 @@ import Step2 from './Component/Step2'
 import Step3 from './Component/Step3'
 import Review from './Component/Review'
 import Lastpage from './Lastpage'
-// import {getDishes} from "./store/action/dishes.act";
-import {getDishes} from './store/fetch'
+import {getDishes} from './store/Actions'
 import { Tabs } from 'antd';
 
 
@@ -146,11 +145,11 @@ class MainTab extends Component {
 
 const mapStateToProps = state => {
   return {
-    // getData:state.dishesReducer.Json,
+    
     Json: state.Json.Json,
     meal:state.Json.Json,
-    restaurants:state.Json.Json,
-    dishes:state.Json.Json,
+    // restaurants:state.Json.Json,
+    // dishes:state.Json.Json,
     loading:state.Json.loading,
     error:state.Json.error
   };
@@ -161,4 +160,4 @@ const mapDispatchToProps = dispatch =>{
      getDishes:()=>dispatch((getDishes))
   };
 };
- export default connect(mapStateToProps)(MainTab)
+ export default connect(mapStateToProps,null)(MainTab)

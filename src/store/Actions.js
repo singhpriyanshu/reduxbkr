@@ -1,21 +1,32 @@
-export const GET_DISHES_START =  "GET_DISHES_START";
-export const GET_DISHES_SUCCESS =  "GET_DISHES_SUCCESS";
-export const GET_DISHES_FAIL =  "GET_DISHES_FAIL";
+import * as ActionTypes from './ActionTypes';
 
 
 export const getDishesStart = () => ({
-    type: GET_DISHES_START
+    type:ActionTypes.GET_DISHES_START
     
   });
   
   export const getDishesSuccess = (Json) => ({
-    type: GET_DISHES_SUCCESS,
+    type: ActionTypes.GET_DISHES_SUCCESS,
     payload: { Json }
    
   });
   
-  export const getDishesFail = error => ({
-    type: GET_DISHES_FAIL,
+  export const getDishesFail = (error) => ({
+    type: ActionTypes.GET_DISHES_FAIL,
     payload: { error }
   });
 
+  export function getDishes () {
+    return dispatch =>{
+       dispatch(getDishesStart());
+       fetch('../../data.json')
+       .then(res => res.json())
+       .then((data) => {
+          dispatch(getDishesSuccess(data.dishes))
+       })
+       .catch((err)=>{
+            dispatch(getDishesFail(err))
+       })
+    };
+}

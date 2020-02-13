@@ -1,0 +1,3 @@
+export const GET_DISHES_START =  "GET_DISHES_START";
+export const GET_DISHES_SUCCESS =  "GET_DISHES_SUCCESS";
+export const GET_DISHES_FAIL =  "GET_DISHES_FAIL";

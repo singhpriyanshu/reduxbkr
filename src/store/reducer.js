@@ -1,4 +1,4 @@
-import {GET_DISHES_START,GET_DISHES_SUCCESS,GET_DISHES_FAIL} from './Actions'
+import {GET_DISHES_START,GET_DISHES_SUCCESS,GET_DISHES_FAIL} from './ActionTypes'
 
 
 const initialState = {
